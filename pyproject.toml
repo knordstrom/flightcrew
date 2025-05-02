@@ -1,0 +1,25 @@
+[project]
+name = "flightcrew"
+version = "0.1.0"
+description = "A crew for finding flight options"
+authors = [
+    { name = "Keith Nordstrom", email = "kmnordstrom@yahoo.com" },
+]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.114.0,<1.0.0",
+    "amadeus>=12.0.0",
+]
+
+[project.scripts]
+flightcrew = "flightcrew.main:run"
+run_crew = "flightcrew.main:run"
+train = "flightcrew.main:train"
+replay = "flightcrew.main:replay"
+test = "flightcrew.main:test"
+
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"

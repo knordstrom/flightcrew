@@ -1,0 +1,3 @@
+find_flights_task:
+  description: Find flights according to the given criteria
+  expected_output: A list of flights that match the criteria
