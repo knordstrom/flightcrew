@@ -36,6 +36,8 @@ def run():
     Run the crew.
     """
     load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__),'../../.env'), override=True)
+    print("Using model",os.environ['MODEL'])
+    
     inputs = {
         'topic': 'Find flights to SAF after June 1st, 2025',
         'start_date': '2025-06-01', # str(datetime.now().date()),
@@ -44,8 +46,13 @@ def run():
 
     inquiry_content: str = load_inquiry_file()
 
+    goal: str = f'''{inquiry_content}. Then use the response to publish a report on the 
+    subject in markdown, including a table with the flights found. 
+    The report should be clear and concise, making it easy for others to understand and 
+    act on the information provided.'''
+    print("Goal will be:", goal)
     try:
-        FlightCrew(goal=f'{inquiry_content}. Then use the response to publish a report on the subject in markdown').crew().kickoff(inputs=inputs)
+        FlightCrew(goal=goal).crew().kickoff(inputs=inputs)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
     

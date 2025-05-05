@@ -7,110 +7,110 @@ from flightcrew.library.sdk import SDK
 
 class FlightTravelerSegmentAmenityProvider(BaseModel):
     """Traveler segment amenity provider schema."""
-    name: str = Field(str, description="Name of the amenity provider.")
+    name: str = Field(..., description="Name of the amenity provider.")
     # {
 class FlightTravelerSegmentAmenity(BaseModel):
     """Traveler segment amenity schema."""
-    description: str = Field(str, description="Description of the amenity.")
-    isChargeable: bool = Field(bool, description="Whether the amenity is chargeable.")
-    amenityType: str = Field(str, description="Type of the amenity.")
-    amenityProvider: FlightTravelerSegmentAmenityProvider = Field(FlightTravelerSegmentAmenityProvider, description="Provider of the amenity.")
+    description: str = Field(..., description="Description of the amenity.")
+    isChargeable: bool = Field(..., description="Whether the amenity is chargeable.")
+    amenityType: str = Field(..., description="Type of the amenity.")
+    amenityProvider: FlightTravelerSegmentAmenityProvider = Field(..., description="Provider of the amenity.")
 
 class FlightTravelerSegmentBags(BaseModel):
     """Traveler segment checked bags schema."""
-    quantity: int = Field(int, description="Quantity of checked bags.")
+    quantity: int = Field(..., description="Quantity of checked bags.")
 
 class FlightTravelerSegmentPriceDetails(BaseModel):
     """Traveler segment price details schema."""
-    segmentId: str = Field(str, description="Segment ID.")
-    cabin: str = Field(str, description="Cabin class.")
-    fareBasis: str = Field(str, description="Fare basis code.")
-    brandedFare: str = Field(str, description="Branded fare code.")
-    brandedFareLabel: str = Field(str, description="Branded fare label.")
-    class_: str = Field(str, alias='class', description="Class of service.")
-    includedCheckedBags: FlightTravelerSegmentBags = Field(FlightTravelerSegmentBags, description="Included checked bags details.")
-    includedCabinBags: FlightTravelerSegmentBags = Field(FlightTravelerSegmentBags, description="Included cabin bags details.")
-    amenities: list[FlightTravelerSegmentAmenity] = Field(list[FlightTravelerSegmentAmenity], description="List of amenities.")
+    segmentId: str = Field(..., description="Segment ID.")
+    cabin: str = Field(..., description="Cabin class.")
+    fareBasis: str = Field(..., description="Fare basis code.")
+    brandedFare: str = Field(..., description="Branded fare code.")
+    brandedFareLabel: str = Field(..., description="Branded fare label.")
+    class_: str = Field(..., alias='class', description="Class of service.")
+    includedCheckedBags: FlightTravelerSegmentBags = Field(..., description="Included checked bags details.")
+    includedCabinBags: FlightTravelerSegmentBags = Field(..., description="Included cabin bags details.")
+    amenities: list[FlightTravelerSegmentAmenity] = Field(..., description="List of amenities.")
 
 class FlightTravelerPrice(BaseModel):
     """Traveler price schema."""
-    currency: str = Field(str, description="Currency of the price.")
-    total: str = Field(str, description="Total price.")
-    base: str = Field(str, description="Base price.")
+    currency: str = Field(..., description="Currency of the price.")
+    total: str = Field(..., description="Total price.")
+    base: str = Field(..., description="Base price.")
 
 class FlightTravelerPricing(BaseModel):
     """Traveler pricing schema."""
-    travelerId: str = Field(str, description="Traveler ID.")
-    fareOption: str = Field(str, description="Fare option.")
-    travelerType: str = Field(str, description="Traveler type.")
-    price: FlightTravelerPrice = Field(FlightTravelerPrice, description="Price details.")
-    fareDetailsBySegment: list[FlightTravelerSegmentPriceDetails] = Field(list[FlightTravelerSegmentPriceDetails], description="Fare details by segment.")
+    travelerId: str = Field(..., description="Traveler ID.")
+    fareOption: str = Field(..., description="Fare option.")
+    travelerType: str = Field(..., description="Traveler type.")
+    price: FlightTravelerPrice = Field(..., description="Price details.")
+    fareDetailsBySegment: list[FlightTravelerSegmentPriceDetails] = Field(..., description="Fare details by segment.")
 
 class FlightPricingOptions(BaseModel):
     """Flight pricing options schema."""
-    fareType: list[str] = Field(list[str], description="List of fare types.")
-    includedCheckedBagsOnly: bool = Field(bool, description="Whether only checked bags are included.")
+    fareType: list[str] = Field(..., description="List of fare types.")
+    includedCheckedBagsOnly: bool = Field(..., description="Whether only checked bags are included.")
 
 class FlightPriceFee(BaseModel):
     """Flight price fee schema."""
-    amount: str = Field(str, description="Amount of the fee.")
-    type: str = Field(str, description="Type of the fee.")
+    amount: str = Field(..., description="Amount of the fee.")
+    type: str = Field(..., description="Type of the fee.")
 
     #{
 class FlightPrice(BaseModel):
     """Flight price schema."""
-    currency: str = Field(str, description="Currency of the price.")
-    total: str = Field(str, description="Total price.")
-    base: str = Field(str, description="Base price.")
-    fees: list[FlightPriceFee] = Field(list[FlightPriceFee], description="List of fees.")
-    grandTotal: str = Field(str, description="Grand total price.")
+    currency: str = Field(..., description="Currency of the price.")
+    total: str = Field(..., description="Total price.")
+    base: str = Field(..., description="Base price.")
+    fees: list[FlightPriceFee] = Field(..., description="List of fees.")
+    grandTotal: str = Field(..., description="Grand total price.")
 
 class FlightSegment(BaseModel):
     """Flight segment schema."""
-    departure: dict = Field(dict, description="Departure details.")
-    arrival: dict = Field(dict, description="Arrival details.")
-    carrierCode: str = Field(str, description="Carrier code.")
-    number: str = Field(str, description="Flight number.")
-    aircraft: dict = Field(dict, description="Aircraft details.")
-    duration: str = Field(str, description="Duration of the flight segment.")
-    id: str = Field(str, description="ID of the flight segment.")
-    numberOfStops: int = Field(int, description="Number of stops in the flight segment.")
-    blacklistedInEU: bool = Field(bool, description="Whether the flight is blacklisted in EU.")
+    departure: dict = Field(..., description="Departure details.")
+    arrival: dict = Field(..., description="Arrival details.")
+    carrierCode: str = Field(..., description="Carrier code.")
+    number: str = Field(..., description="Flight number.")
+    aircraft: dict = Field(..., description="Aircraft details.")
+    duration: str = Field(..., description="Duration of the flight segment.")
+    id: str = Field(..., description="ID of the flight segment.")
+    numberOfStops: int = Field(..., description="Number of stops in the flight segment.")
+    blacklistedInEU: bool = Field(..., description="Whether the flight is blacklisted in EU.")
 
 class FlightItinerary(BaseModel):
     """Itinerary schema."""
-    duration: str = Field(str, description="Duration of the itinerary.")
-    segments: list[FlightSegment] = Field(list[FlightSegment], description="List of segments in the itinerary.")
+    duration: str = Field(..., description="Duration of the itinerary.")
+    segments: list[FlightSegment] = Field(..., description="List of segments in the itinerary.")
  
 class FlightFound(BaseModel):
-    type: str = Field(str, description="Type of the flight offer.")
-    id: str = Field(str, description="ID of the flight offer.")
-    source: str = Field(str, description="Source of the flight offer.")
-    instantTicketingRequired: bool = Field(bool, description="Whether instant ticketing is required.")
-    nonHomogeneous: bool = Field(bool, description="Whether the flight offer is non-homogeneous.")
-    oneWay: bool = Field(bool, description="Whether the flight offer is one-way.")
-    isUpsellOffer: bool = Field(bool, description="Whether the flight offer is an upsell offer.")
-    lastTicketingDate: str = Field(str, description="Last ticketing date.")
-    lastTicketingDateTime: str = Field(str, description="Last ticketing date and time.")
-    numberOfBookableSeats: int = Field(int, description="Number of bookable seats.")
-    itineraries: list[FlightItinerary] = Field(list[FlightItinerary], description="List of itineraries.")
-    price: FlightPrice = Field(FlightPrice, description="Price details.")
-    pricingOptions: FlightPricingOptions = Field(FlightPricingOptions, description="Pricing options.")
-    validatingAirlineCodes: list[str] = Field(list[str], description="List of validating airline codes.")
-    travelerPricings: list[dict] = Field(list[dict], description="List of traveler pricing details.")
+    type: str = Field(..., description="Type of the flight offer.")
+    id: str = Field(..., description="ID of the flight offer.")
+    source: str = Field(..., description="Source of the flight offer.")
+    instantTicketingRequired: bool = Field(..., description="Whether instant ticketing is required.")
+    nonHomogeneous: bool = Field(..., description="Whether the flight offer is non-homogeneous.")
+    oneWay: bool = Field(..., description="Whether the flight offer is one-way.")
+    isUpsellOffer: bool = Field(..., description="Whether the flight offer is an upsell offer.")
+    lastTicketingDate: str = Field(..., description="Last ticketing date.")
+    lastTicketingDateTime: str = Field(..., description="Last ticketing date and time.")
+    numberOfBookableSeats: int = Field(..., description="Number of bookable seats.")
+    itineraries: list[FlightItinerary] = Field(..., description="List of itineraries.")
+    price: FlightPrice = Field(..., description="Price details.")
+    pricingOptions: FlightPricingOptions = Field(..., description="Pricing options.")
+    validatingAirlineCodes: list[str] = Field(..., description="List of validating airline codes.")
+    travelerPricings: list[dict] = Field(..., description="List of traveler pricing details.")
 
 class FlightsFound(BaseModel):
-    results: list[FlightFound] = Field(list[FlightFound], description="List of flight offers found.")
+    results: list[FlightFound] = Field(..., description="List of flight offers found.")
    
 class FlightFinderToolInput(BaseModel):
     """Input schema for MyCustomTool."""
-    start_date: datetime | str = Field(datetime or str, description="Earliest date to look for flights.")
-    end_date: Optional[datetime] | Optional[str] = Field(Optional[datetime] or Optional[str], description="Latest date to look for flights.")
-    origin: str = Field(str, description="Origin airport code.")
-    destination: Optional[str] = Field(Optional[str], description="Destination airport code.")
+    start_date: datetime | str = Field(..., description="Earliest date to look for flights.")
+    end_date: Optional[datetime] | Optional[str] = Field(..., description="Latest date to look for flights.")
+    origin: str = Field(..., description="Origin airport code.")
+    destination: Optional[str] = Field(..., description="Destination airport code.")
     # max_price: Optional[float] = Field(Optional[float], description="Maximum price for the flight.")
     # max_duration: Optional[int] = Field(Optional[int], description="Maximum duration of the flight in minutes.")
-    adults: Optional[int] = Field(Optional[int], description="Number of adult passengers requested")
+    adults: Optional[int] = Field(..., description="Number of adult passengers requested")
 
     # @field_validator('start_date', 'end_date', mode='before')
     # def validate_dates(cls, v: datetime) -> str:
