@@ -2,6 +2,7 @@ import os
 import requests
 from amadeus import Client
 
+from flightcrew.models.FlightsFound import FlightsFound
 
 class SDK:
     """
@@ -24,7 +25,7 @@ class SDK:
             client_secret=self.api_secret,
         )
 
-    def find_flights(self, params: dict) -> dict:
+    def find_flights(self, params: dict[str, str]) -> FlightsFound:
         """
         Search for flights using the Amadeus API with known destinations and dates.
         """
@@ -33,7 +34,7 @@ class SDK:
             response = self.amadeus.shopping.flight_offers_search.get(**params)
             if response.status_code == 200:
                 print("Flights found successfully.")
-                return response.data
+                return FlightsFound.from_response(response.data)
             else:
                 print(f"Response was {response.status_code} - {response.reason}")
                 raise Exception(f"Error: {response.status_code} - {response.reason}")

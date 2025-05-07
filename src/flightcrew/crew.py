@@ -1,10 +1,10 @@
 import os
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-import requests
 
-from flightcrew.library.sdk import SDK
-from flightcrew.tools.flight_finder import FlightFinderToolInput, FlightFinderTool, FlightFound, FlightsFound
+from flightcrew.library.amadeus_sdk import SDK
+from flightcrew.models.FlightsFound import FlightsFound
+from flightcrew.tools.flight_finder import FlightFinderTool
 
 @CrewBase
 class FlightCrew():
@@ -33,7 +33,7 @@ class FlightCrew():
             name="Flight Finder",
             role="Flight Researcher",
             goal= "Use the Amadeus API to find flights based on user input.",
-            backstory="This agent is responsible for finding bespoke flights that conform to very specific criteria",
+            backstory="This agent is responsible for finding bespoke flights that conform to specific criteria",
             description="Finds flights through the Amadeus API",
             tools=[FlightFinderTool(self.sdk)],
             output_pydantic=FlightsFound,
